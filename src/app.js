@@ -20,6 +20,7 @@ var config = {
         // database: 'proyecto_final',
         database: 'Reservations',
         port: 4001,
+        trustServerCertificate:true,
         rowCollectionOnRequestCompletion :true
     }
 }
@@ -57,24 +58,6 @@ function Read(callback) {
                 callback(rows);
             }
         });
-
-    // Print the rows read
-    var result = "";
-    request.on('done', function (rowCount, more, rows) {
-        if(rowCount>0){
-
-        }
-        columns.forEach(function (column) {
-            if (column.value === null) {
-                callback(result);
-                console.log('NULL');
-            } else {
-                result += column.value + " ";
-            }
-        });
-        console.log('res=>',result);
-        result = "";
-    });
 
     // Execute SQL statement
     connection.execSql(request);
